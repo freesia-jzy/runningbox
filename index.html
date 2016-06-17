@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>running box</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding: 0px;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 135, 162, 0.38);
+            position: absolute;
+        }
+        #run{
+            margin-left: 500px;
+            margin-top: 500px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="box"></div>
+<input type="button" value="run" onclick="run()" id="run">
+<input type="button" value="stop" onclick="stop()" id="stop">
+</body>
+<script type="text/javascript">
+    var distance=600;
+    box.style.left=0;
+    box.style.top=0;
+    var speed=50;
+    var left1=0;
+    var top1=0;
+    var timer=-100;
+
+    var time=0;
+    function step(){
+        if(left1<distance && top1==0){
+            console.log(1);
+            box.style.left=left1+speed+'px';
+            left1=parseInt(box.style.left);
+        }
+        else if(left1==distance && top1<distance){
+            console.log(2);
+            box.style.top=top1+speed+'px';
+            top1=parseInt(box.style.top);
+        }
+        else if(top1==distance && left1<=distance&&left1>0){
+            console.log(3);
+            box.style.left=left1-speed+'px';
+            left1=parseInt(box.style.left);
+        }
+        else if(left1==0 && top1<=distance&&top1>0){
+            console.log(4);
+            box.style.top=top1-speed+'px';
+            top1=parseInt(box.style.top);
+        }
+        console.log("top"+top1);
+        console.log(left1);
+    }
+    function run(){
+
+        if(timer==-100){
+            timer=setInterval(step,100);
+        }
+
+    }
+    function stop() {
+        clearInterval(timer);
+        timer=-100;
+    }
+</script>
+
+
